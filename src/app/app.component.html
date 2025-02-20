@@ -1,0 +1,19 @@
+<ion-app>
+  <ion-tabs side="start" tabsId="t1" contendId="principal-page">
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="principal-page" >
+        <ion-icon name="home" button [routerLink]=" ['/principal-page'] "></ion-icon>
+        Principal Page
+      </ion-tab-button>
+      <ion-tab-button tab="cameras" button [routerLink]=" ['/cameras'] ">
+        <ion-icon name="camera"></ion-icon>
+        Cameras
+      </ion-tab-button>
+      <ion-tab-button tab="setting" button [routerLink]=" ['/setting'] ">
+        <ion-icon name="settings"></ion-icon>
+        Settings
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+  <ion-router-outlet id="principal-page"></ion-router-outlet>
+</ion-app>
