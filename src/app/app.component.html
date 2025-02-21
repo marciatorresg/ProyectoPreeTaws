@@ -1,5 +1,7 @@
 <ion-app>
-  <ion-tabs side="start" tabsId="t1" contendId="principal-page">
+ 
+  <ion-router-outlet></ion-router-outlet>
+  <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="principal-page" >
         <ion-icon name="home" button [routerLink]=" ['/principal-page'] "></ion-icon>
@@ -15,5 +17,4 @@
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
-  <ion-router-outlet id="principal-page"></ion-router-outlet>
 </ion-app>
