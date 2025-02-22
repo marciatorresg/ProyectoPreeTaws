@@ -15,6 +15,10 @@ export const routes: Routes = [
     loadComponent: () => import('./log/log.page').then( m => m.LogPage)
   },
   {
+    path: 'sign',
+    loadComponent: () => import('./sign/sign.page').then( m => m.SignPage)
+  },
+  {
     path: 'principal-page',
     loadComponent: () => import('./principal-page/principal-page.page').then( m => m.PrincipalPagePage)
   },
@@ -26,4 +30,5 @@ export const routes: Routes = [
     path: 'setting',
     loadComponent: () => import('./setting/setting.page').then( m => m.SettingPage)
   },
+
 ];
