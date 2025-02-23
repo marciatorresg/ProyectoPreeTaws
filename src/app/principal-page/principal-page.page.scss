@@ -1,0 +1,19 @@
+
+  .camera-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .camera-grid {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .camera-icon {
+    font-size: 80px;
+    color: white;
+  }
+  .text-white {
+    color: white;
+  }
+
