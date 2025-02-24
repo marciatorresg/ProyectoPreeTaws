@@ -1,4 +1,4 @@
-<ion-header> 
+<ion-header>
   <ion-toolbar color="dark">
     <ion-title class="header-title" style="display: flex; align-items: center; justify-content: flex-start;">
       <img src="assets/images/Logo.png" alt="Logo" height="100" width="100" style="margin-bottom: 10px;">
@@ -13,10 +13,10 @@
     </ion-card-header>
     <ion-card-content>
       <div class="camera-container">
-        <ion-icon name="stop-outline" class="camera-icon"></ion-icon>
+        <ion-icon name="stop-outline" class="camera-icon" aria-hidden="false"></ion-icon>
         <div class="camera-grid">
-          <ion-icon name="stop-outline" class="camera-icon"></ion-icon>
-          <ion-icon name="stop-outline" class="camera-icon"></ion-icon>
+          <ion-icon name="stop-outline" class="camera-icon" aria-hidden="false"></ion-icon>
+          <ion-icon name="stop-outline" class="camera-icon" aria-hidden="false"></ion-icon>
         </div>
       </div>
     </ion-card-content>
@@ -51,9 +51,10 @@
 <ion-footer>
   <ion-toolbar color="dark">
     <ion-buttons slot="middle">
-      <ion-button>
+      <ion-button role="button">
         <ion-icon name="stop-outline" size="large"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
+

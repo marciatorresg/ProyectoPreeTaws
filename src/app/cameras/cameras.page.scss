@@ -1,30 +1,40 @@
-  .camera-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-  }
-  .camera-frame {
-    width: 90%;
-    height: auto;
-    border-radius: 10px;
-  }
-  #floating-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    z-index: 1000;
-    cursor: grab;
-  }
-  .camera-icon {
-    font-size: 120px;
-    color: white;
-  }
+.camera-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.camera-icon {
+  font-size: 120px;
+  color: white;
+}
+
+#floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 30px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent; /* Elimina cualquier fondo */
+  border: none; /* Elimina el borde si lo hubiera */
+  box-shadow: none; /* Elimina cualquier sombra */
+  padding: 0;
+}
+
+#floating-btn::part(native) {
+  background: transparent !important; /* Asegura que Ionic no agregue fondo */
+  box-shadow: none !important;
+}
+
+#floating-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+

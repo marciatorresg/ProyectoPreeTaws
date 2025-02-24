@@ -1,8 +1,12 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+
+import { addIcons } from 'ionicons';
+import { stopOutline } from 'ionicons/icons';
+
+addIcons({ 'stop-outline': stopOutline });
 
 @Component({
   selector: 'app-cameras',
@@ -16,22 +20,32 @@ export class CamerasPage {
   offsetX = 0;
   offsetY = 0;
 
-  constructor(private router: Router) {}
-
   startDrag(event: MouseEvent) {
+    const floatingBtn = event.currentTarget as HTMLElement;
     this.isDragging = true;
-    this.offsetX = event.clientX - (event.target as HTMLElement).getBoundingClientRect().left;
-    this.offsetY = event.clientY - (event.target as HTMLElement).getBoundingClientRect().top;
+    this.offsetX = event.clientX - floatingBtn.getBoundingClientRect().left;
+    this.offsetY = event.clientY - floatingBtn.getBoundingClientRect().top;
+  
     document.addEventListener('mousemove', this.drag.bind(this));
     document.addEventListener('mouseup', this.stopDrag.bind(this));
   }
-
-  drag(event: MouseEvent) {
+  
+  drag(event: MouseEvent | TouchEvent) {
     if (!this.isDragging) return;
+    
+    let clientX, clientY;
+    if (event instanceof MouseEvent) {
+      clientX = event.clientX;
+      clientY = event.clientY;
+    } else {
+      clientX = event.touches[0].clientX;
+      clientY = event.touches[0].clientY;
+    }
+
     const floatingBtn = document.getElementById('floating-btn');
     if (floatingBtn) {
-      let x = event.clientX - this.offsetX;
-      let y = event.clientY - this.offsetY;
+      let x = clientX - this.offsetX;
+      let y = clientY - this.offsetY;
       floatingBtn.style.left = `${x}px`;
       floatingBtn.style.top = `${y}px`;
     }
@@ -41,10 +55,7 @@ export class CamerasPage {
     this.isDragging = false;
     document.removeEventListener('mousemove', this.drag.bind(this));
     document.removeEventListener('mouseup', this.stopDrag.bind(this));
+    document.removeEventListener('touchmove', this.drag.bind(this));
+    document.removeEventListener('touchend', this.stopDrag.bind(this));
   }
-
-  goToHome() {
-    this.router.navigate(['/home']);
-  }
-
 }
