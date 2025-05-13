@@ -1,4 +1,15 @@
 
+ .header-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-title img {
+  margin-top: 25px; // Ajusta este valor según cuánto quieras bajarlo
+  margin-bottom: 16px;
+}
+
   .camera-container {
     display: flex;
     flex-direction: column;
