@@ -32,11 +32,8 @@ export const routes: Routes = [
   },
   
   {
-  path: 'detalle/:camera/:year/:month/:day',
+  path: 'detalle/:camera/:year/:month',
   loadComponent: () => import('./detalle/detalle.page').then(m => m.DetallePage)
-},
-
-
-
+}
 
 ];

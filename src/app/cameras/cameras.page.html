@@ -8,33 +8,35 @@
   </ion-header>
 
   <ion-content class="ion-padding">
+    <ion-card-header>
+      <ion-card-title class="text-white">Registers</ion-card-title>
+    </ion-card-header>
+
     <ion-list>
       <ng-container *ngFor="let camera of menuData">
         <ion-item button (click)="toggleCamera(camera)">
           <ion-label>{{ camera.name }}</ion-label>
         </ion-item>
 
-        <ion-list *ngIf="camera.expanded">
-          <ng-container *ngFor="let year of camera.years">
-            <ion-item button (click)="toggleYear(year)">
-              <ion-label>{{ year.year }}</ion-label>
-            </ion-item>
+        <ng-container *ngIf="camera.expanded">
+          <ion-list>
+            <ng-container *ngFor="let year of camera.years">
+              <ion-item button (click)="toggleYear(year)">
+                <ion-label>{{ year.year }}</ion-label>
+              </ion-item>
 
-            <ion-list *ngIf="year.expanded">
-              <ng-container *ngFor="let month of year.months">
-                <ion-item button (click)="toggleMonth(month)">
-                  <ion-label>{{ month.name }}</ion-label>
-                </ion-item>
-
-                <ion-list *ngIf="month.expanded">
-                  <ion-item button *ngFor="let day of month.days" (click)="openDay(camera.name, year.year, month.name, day)">
-                    <ion-label>Día {{ day }}</ion-label>
+              <ng-container *ngIf="year.expanded">
+                <ion-list>
+                  <ng-container *ngFor="let month of year.months">
+                    <ion-item button (click)="openDetail(camera.name, year.year.toString(), month.name)">
+                    <ion-label>{{ month.name }}</ion-label>
                   </ion-item>
+                  </ng-container>
                 </ion-list>
               </ng-container>
-            </ion-list>
-          </ng-container>
-        </ion-list>
+            </ng-container>
+          </ion-list>
+        </ng-container>
       </ng-container>
     </ion-list>
   </ion-content>

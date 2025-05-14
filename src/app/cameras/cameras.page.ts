@@ -32,8 +32,8 @@ export class CamerasPage {
           year: 2025,
           expanded: false,
           months: [
-            { name: 'January', expanded: false, days: ['01', '02', '03'] },
-            { name: 'February', expanded: false, days: ['01', '02'] }
+            { name: 'January', expanded: false },
+            { name: 'February', expanded: false }
           ]
         }
       ],
@@ -46,8 +46,8 @@ export class CamerasPage {
           year: 2025,
           expanded: false,
           months: [
-            { name: 'January', expanded: false, days: ['01', '02', '03'] },
-            { name: 'February', expanded: false, days: ['01', '02'] }
+            { name: 'January', expanded: false},
+            { name: 'February', expanded: false }
           ]
         }
       ],
@@ -60,8 +60,8 @@ export class CamerasPage {
           year: 2025,
           expanded: false,
           months: [
-            { name: 'January', expanded: false, days: ['01', '02', '03'] },
-            { name: 'February', expanded: false, days: ['01', '02'] }
+            { name: 'January', expanded: false },
+            { name: 'February', expanded: false}
           ]
         }
       ],
@@ -83,9 +83,9 @@ export class CamerasPage {
   }
 
   // Navegar a detalle
-  openDay(camera: string, year: number, month: string, day: string) {
-    this.router.navigate(['/detalle', camera, year, month, day]);
-  }
+  openDetail(camera: string, year: string, month: string) {
+  this.router.navigate([`/detalle/${camera}/${year}/${month}`]);
+}
 
   // Botón flotante
   startDrag(event: MouseEvent) {
