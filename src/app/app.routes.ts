@@ -34,6 +34,10 @@ export const routes: Routes = [
   {
   path: 'detalle/:camera/:year/:month',
   loadComponent: () => import('./detalle/detalle.page').then(m => m.DetallePage)
+},
+{
+  path: 'fire',
+  loadComponent: () => import('./fire-detector/fire-detector.component').then(m => m.FireDetectorComponent)
 }
 
 ];
