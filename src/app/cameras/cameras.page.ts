@@ -7,6 +7,8 @@ import { RouterModule, Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { stopOutline } from 'ionicons/icons';
 
+import { FireDetectionService } from '../services/fire-detection.service';
+
 addIcons({ 'stop-outline': stopOutline });
 
 @Component({

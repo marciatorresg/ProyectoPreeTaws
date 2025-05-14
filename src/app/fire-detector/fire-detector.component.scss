@@ -1,0 +1,27 @@
+.container {
+  padding: 1rem;
+  color: white;
+  text-align: center;
+}
+
+.preview {
+  margin-top: 1rem;
+}
+
+.preview-img {
+  max-width: 300px;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #aaa;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  background-color: #ff6600;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
