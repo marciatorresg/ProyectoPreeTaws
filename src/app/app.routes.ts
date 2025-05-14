@@ -30,5 +30,13 @@ export const routes: Routes = [
     path: 'setting',
     loadComponent: () => import('./setting/setting.page').then( m => m.SettingPage)
   },
+  
+  {
+  path: 'detalle/:camera/:year/:month/:day',
+  loadComponent: () => import('./detalle/detalle.page').then(m => m.DetallePage)
+},
+
+
+
 
 ];

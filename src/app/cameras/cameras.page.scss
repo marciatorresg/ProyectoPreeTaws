@@ -4,9 +4,30 @@
   justify-content: center;
 }
 
-.header-title img {
-  margin-top: 25px; // Ajusta este valor según cuánto quieras bajarlo
-  margin-bottom: 16px;
+.menu-content {
+  background-color: #121212;
+  color: white;
+  padding: 0 0 16px 0;
+}
+
+.menu-title {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 16px;
+}
+
+.menu-list {
+  --background: #121212;
+  --ion-item-background: #121212;
+  --color: white;
+  --border-color: #2a2a2a;
+}
+
+ion-item {
+  --padding-start: 16px;
+  --inner-padding-end: 16px;
+  --min-height: 44px;
+  font-size: 16px;
 }
 
 .camera-list {
@@ -32,15 +53,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: transparent; /* Elimina cualquier fondo */
-  border: none; /* Elimina el borde si lo hubiera */
-  box-shadow: none; /* Elimina cualquier sombra */
+  background: transparent;
+  border: none;
+  box-shadow: none;
   padding: 0;
-}
-
-#floating-btn::part(native) {
-  background: transparent !important; /* Asegura que Ionic no agregue fondo */
-  box-shadow: none !important;
 }
 
 #floating-btn img {

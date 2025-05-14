@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { RouterModule, Router } from '@angular/router';
 
 import { addIcons } from 'ionicons';
 import { stopOutline } from 'ionicons/icons';
@@ -13,26 +14,93 @@ addIcons({ 'stop-outline': stopOutline });
   templateUrl: './cameras.page.html',
   styleUrls: ['./cameras.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule]
 })
 export class CamerasPage {
   isDragging = false;
   offsetX = 0;
   offsetY = 0;
 
+  constructor(private router: Router) {}
+
+  // Estructura jerárquica del menú
+  menuData = [
+    {
+      name: 'Backyard',
+      years: [
+        {
+          year: 2025,
+          expanded: false,
+          months: [
+            { name: 'January', expanded: false, days: ['01', '02', '03'] },
+            { name: 'February', expanded: false, days: ['01', '02'] }
+          ]
+        }
+      ],
+      expanded: false
+    },
+    {
+      name: 'Living Room',
+      years: [
+        {
+          year: 2025,
+          expanded: false,
+          months: [
+            { name: 'January', expanded: false, days: ['01', '02', '03'] },
+            { name: 'February', expanded: false, days: ['01', '02'] }
+          ]
+        }
+      ],
+      expanded: false
+    },
+    {
+      name: 'Main Room',
+      years: [
+        {
+          year: 2025,
+          expanded: false,
+          months: [
+            { name: 'January', expanded: false, days: ['01', '02', '03'] },
+            { name: 'February', expanded: false, days: ['01', '02'] }
+          ]
+        }
+      ],
+      expanded: false
+    }
+  ];
+
+  // Métodos para expandir/colapsar
+  toggleCamera(camera: any) {
+    camera.expanded = !camera.expanded;
+  }
+
+  toggleYear(year: any) {
+    year.expanded = !year.expanded;
+  }
+
+  toggleMonth(month: any) {
+    month.expanded = !month.expanded;
+  }
+
+  // Navegar a detalle
+  openDay(camera: string, year: number, month: string, day: string) {
+    this.router.navigate(['/detalle', camera, year, month, day]);
+  }
+
+  // Botón flotante
   startDrag(event: MouseEvent) {
     const floatingBtn = event.currentTarget as HTMLElement;
     this.isDragging = true;
     this.offsetX = event.clientX - floatingBtn.getBoundingClientRect().left;
     this.offsetY = event.clientY - floatingBtn.getBoundingClientRect().top;
-  
+
     document.addEventListener('mousemove', this.drag.bind(this));
     document.addEventListener('mouseup', this.stopDrag.bind(this));
   }
-  
+
   drag(event: MouseEvent | TouchEvent) {
     if (!this.isDragging) return;
-    
+
     let clientX, clientY;
     if (event instanceof MouseEvent) {
       clientX = event.clientX;

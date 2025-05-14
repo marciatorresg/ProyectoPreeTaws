@@ -1,45 +1,66 @@
 <ion-menu contentId="main-content">
   <ion-header>
-  <ion-toolbar color="dark">
-    <ion-title class="header-title" style="display: flex; align-items: center; justify-content: center;">
-      <img src="assets/images/Logo.png" alt="Logo" height="80" width="80" style="margin-top: 25px; margin-bottom: 16px;">
-    </ion-title>
-  </ion-toolbar>
-  </ion-header>
-
-  <ion-content class="ion-padding">This is the menu content.</ion-content>
-
-</ion-menu>
-<div class="ion-page" id="main-content">
-  <ion-header>
-
-  <ion-header>
-  <ion-toolbar color="dark">
-    <ion-title class="header-title" style="display: flex; align-items: center; justify-content: center;">
-      <img src="assets/images/Logo.png" alt="Logo" height="80" width="80" style="margin-top: 25px; margin-bottom: 16px;">
-    </ion-title>
-  </ion-toolbar>
-  </ion-header>
-
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
+    <ion-toolbar color="dark">
+      <ion-title class="header-title" style="display: flex; align-items: center; justify-content: center;">
+        <img src="assets/images/Logo.png" alt="Logo" height="80" width="80" style="margin-top: 25px; margin-bottom: 16px;">
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
- <ion-content color="dark">
-  <div class="camera-list">
-    <ion-icon name="stop-outline" class="camera-icon"></ion-icon>
-    <ion-icon name="stop-outline" class="camera-icon"></ion-icon>
-    <ion-icon name="stop-outline" class="camera-icon"></ion-icon>
-  </div>
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ng-container *ngFor="let camera of menuData">
+        <ion-item button (click)="toggleCamera(camera)">
+          <ion-label>{{ camera.name }}</ion-label>
+        </ion-item>
 
-  <!-- Botón flotante sin acción de navegación -->
-  <button id="floating-btn" (mousedown)="startDrag($event)">
-    <img src="/assets/icon/cruz.jpg" alt="Cruz">
-  </button>
+        <ion-list *ngIf="camera.expanded">
+          <ng-container *ngFor="let year of camera.years">
+            <ion-item button (click)="toggleYear(year)">
+              <ion-label>{{ year.year }}</ion-label>
+            </ion-item>
 
-</ion-content>
+            <ion-list *ngIf="year.expanded">
+              <ng-container *ngFor="let month of year.months">
+                <ion-item button (click)="toggleMonth(month)">
+                  <ion-label>{{ month.name }}</ion-label>
+                </ion-item>
 
+                <ion-list *ngIf="month.expanded">
+                  <ion-item button *ngFor="let day of month.days" (click)="openDay(camera.name, year.year, month.name, day)">
+                    <ion-label>Día {{ day }}</ion-label>
+                  </ion-item>
+                </ion-list>
+              </ng-container>
+            </ion-list>
+          </ng-container>
+        </ion-list>
+      </ng-container>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="header-title">
+        <img src="assets/images/Logo.png" alt="Logo" height="80" width="80" style="margin-top: 25px; margin-bottom: 16px;">
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content color="dark">
+    <div class="camera-list">
+      <ion-icon name="stop-outline" class="camera-icon"></ion-icon>
+      <ion-icon name="stop-outline" class="camera-icon"></ion-icon>
+      <ion-icon name="stop-outline" class="camera-icon"></ion-icon>
+    </div>
+
+    <button id="floating-btn" (mousedown)="startDrag($event)">
+      <img src="/assets/icon/cruz.jpg" alt="Cruz">
+    </button>
+  </ion-content>
 </div>
