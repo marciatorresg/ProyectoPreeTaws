@@ -1,17 +1,19 @@
 <div class="container">
-  <h2>Detector de Fuego/Humo</h2>
+  <h2>Detector de Fuego/Humo con Video Pregrabado</h2>
 
-  <input type="file" (change)="onImageSelected($event)" accept="image/*">
+  <input type="file" (change)="onVideoSelected($event)" accept="video/*">
 
   <div *ngIf="previewUrl" class="preview">
     <h3>Vista previa:</h3>
-    <img [src]="previewUrl" alt="Vista previa" class="preview-img">
+    <video [src]="previewUrl" controls class="preview-video"></video>
   </div>
 
-  <button (click)="uploadImage()" [disabled]="!selectedImage || loading">
-    {{ loading ? 'Analizando...' : 'Detectar' }}
+  <button (click)="uploadVideo()" [disabled]="!selectedVideo || loading">
+    {{ loading ? 'Analizando...' : 'Detectar en Video' }}
   </button>
 
   <div *ngIf="result" class="resultado">
     <h3>Resultado:</h3>
-    <p>{{ result }}
+    <p>{{ result }}</p>
+    </div>
+</div>
