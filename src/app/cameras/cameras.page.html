@@ -57,10 +57,12 @@
 
   <ion-content color="dark">
     <div class="camera-list">
-      <ion-icon name="stop-outline" class="camera-icon"></ion-icon>
-      <ion-icon name="stop-outline" class="camera-icon"></ion-icon>
-      <ion-icon name="stop-outline" class="camera-icon"></ion-icon>
+      <video #liveCamera autoplay muted playsinline class="live-video"></video>
+
+      <div class="no-signal-box">Sin señal</div>
+      <div class="no-signal-box">Sin señal</div>
     </div>
+
 
     <button id="floating-btn" (mousedown)="startDrag($event)">
       <img src="/assets/icon/cruz.jpg" alt="Cruz">

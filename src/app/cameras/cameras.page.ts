@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -18,7 +18,8 @@ addIcons({ 'stop-outline': stopOutline });
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, RouterModule]
 })
-export class CamerasPage {
+export class CamerasPage implements AfterViewInit{
+  @ViewChild('liveCamera', { static: false }) liveCamera!: ElementRef<HTMLVideoElement>;
   isDragging = false;
   offsetX = 0;
   offsetY = 0;
@@ -128,4 +129,25 @@ export class CamerasPage {
     document.removeEventListener('touchmove', this.drag.bind(this));
     document.removeEventListener('touchend', this.stopDrag.bind(this));
   }
+
+  ngAfterViewInit(): void {
+      this.startLiveCamera();
+    }
+
+    startLiveCamera() {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then((stream) => {
+            if (this.liveCamera && this.liveCamera.nativeElement) {
+              this.liveCamera.nativeElement.srcObject = stream;
+            }
+          })
+          .catch((error) => {
+            console.error('No se pudo acceder a la cámara:', error);
+          });
+      } else {
+        console.warn('La API de medios no está disponible en este navegador.');
+      }
+    }
+
 }

@@ -10,16 +10,6 @@
   margin-bottom: 16px;
 }
 
-  .camera-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .camera-grid {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
   .camera-icon {
     font-size: 100px;
     color: white;
@@ -28,3 +18,45 @@
     color: white;
   }
 
+
+.camera-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.camera-box {
+  background-color: #444;
+  width: 100%;
+  height: 180px;
+  border: 2px solid white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.camera-box video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-grid {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
+.no-signal-box {
+  background-color: #444;
+  color: white;
+  width: 48%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 10px;
+  border: 2px solid white;
+}
