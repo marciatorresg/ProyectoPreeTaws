@@ -11,57 +11,55 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./fire-detector.component.scss']
 })
 export class FireDetectorComponent {
-  selectedImage: File | null = null;
+  selectedVideo: File | null = null;
   previewUrl: string | ArrayBuffer | null = null;
   result: string = '';
   loading = false;
 
-  // ⚠️ Cambia esta URL por la de tu backend en Render
-  backendUrl = ' http://127.0.0.1:5000/detect-fire';
+  // ⚠️ Asegúrate de que tu backend pueda procesar videos
+  backendUrl = 'http://127.0.0.1:5000/detect-fire'; // Nuevo endpoint para videos
 
   constructor(private http: HttpClient) {}
 
-  onImageSelected(event: any): void {
-  this.selectedImage = event.target.files[0];
+  onVideoSelected(event: any): void {
+    this.selectedVideo = event.target.files[0];
 
-  if (!this.selectedImage) return;  // ← validación clave
+    if (!this.selectedVideo) return;
 
-  const reader = new FileReader();
-  reader.onload = () => this.previewUrl = reader.result;
-  reader.readAsDataURL(this.selectedImage); // ahora seguro
-}
+    const reader = new FileReader();
+    reader.onload = () => this.previewUrl = reader.result;
+    reader.readAsDataURL(this.selectedVideo);
+  }
 
-  uploadImage(): void {
-    if (!this.selectedImage) return;
+  uploadVideo(): void {
+    if (!this.selectedVideo) return;
 
     this.loading = true;
     const formData = new FormData();
-    formData.append('file', this.selectedImage);
+    formData.append('file', this.selectedVideo);
 
-    console.log(this.selectedImage);  // Verifica que el archivo se ha seleccionado correctamente
-
+    console.log(this.selectedVideo); // Verifica que el archivo se ha seleccionado correctamente
 
     this.http.post<{
-  fire_detected: boolean;
-  smoke_detected: boolean;
-  detections: Array<{
-    class: string;
-    confidence: number;
-    bbox: number[];
-  }>;
-}>(this.backendUrl, formData)
-  .subscribe({
-    next: (res) => {
-      // Aquí puedes manejar las propiedades que vienen del backend
-      this.result = `Fire Detected: ${res.fire_detected}, Smoke Detected: ${res.smoke_detected}`;
-      console.log('Detecciones:', res.detections);  // Para ver las detecciones en la consola
-      this.loading = false;
-    },
-    error: (err) => {
-      console.error('Error:', err);
-      this.result = 'Error al enviar imagen.';
-      this.loading = false;
-    }
-  });
+      fire_detected: boolean;
+      smoke_detected: boolean;
+      detections: Array<{
+        class: string;
+        confidence: number;
+        bbox: number[];
+      }>;
+    }>(this.backendUrl, formData)
+      .subscribe({
+        next: (res) => {
+          this.result = `Fire Detected: ${res.fire_detected}, Smoke Detected: ${res.smoke_detected}`;
+          console.log('Detecciones del video:', res.detections);
+          this.loading = false;
+        },
+        error: (err) => {
+          console.error('Error al enviar video:', err);
+          this.result = 'Error al enviar video.';
+          this.loading = false;
+        }
+      });
   }
 }
