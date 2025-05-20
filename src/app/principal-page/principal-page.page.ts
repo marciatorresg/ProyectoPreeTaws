@@ -1,5 +1,5 @@
 
-import { Component, OnInit, AfterViewInit } from '@angular/core'; 
+import { Component, ElementRef, OnInit, AfterViewInit, ViewChild } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -18,17 +18,24 @@ addIcons({ 'stop-outline': stopOutline });
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class PrincipalPagePage implements OnInit, AfterViewInit {
+  @ViewChild('video', { static: false }) videoElement!: ElementRef;
 
   constructor() { }
 
   ngOnInit() { }
 
   ngAfterViewInit() {
-    // Verifica si el componente <app-log> tiene aria-hidden y lo corrige
-    const appLog = document.querySelector('app-log');
-    if (appLog) {
-      appLog.removeAttribute('aria-hidden');
-      appLog.setAttribute('inert', 'true'); // Evita interacción sin afectar accesibilidad
+    this.startCamera();
+  }
+
+  async startCamera() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      if (this.videoElement && this.videoElement.nativeElement) {
+        this.videoElement.nativeElement.srcObject = stream;
+      }
+    } catch (err) {
+      console.error('No se pudo acceder a la cámara:', err);
     }
   }
 }
