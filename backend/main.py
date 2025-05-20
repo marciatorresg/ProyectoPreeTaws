@@ -59,7 +59,7 @@ def detect_fire():
             if not ret:
                 break
 
-            if frame_count % int(frame_rate) == 0: # Procesar cada segundo (ajusta según sea necesario)
+            if frame_count % int(frame_rate) == 0: # Procesar cada segundo
                 results = model(frame)
                 for result in results:
                     for box in result.boxes:

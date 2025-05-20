@@ -83,7 +83,6 @@ export class PrincipalPagePage implements OnInit, AfterViewInit, OnDestroy {
             if (res.fire_detected || res.smoke_detected) {
               console.log('🔥 Detección:', res);
               this.showToast(`Alerta: ${res.fire_detected ? 'Fuego' : ''} ${res.smoke_detected ? 'Humo' : ''}`);
-              // Aquí puedes agregar la lógica para registrar la detección
             }
           },
           error: err => {

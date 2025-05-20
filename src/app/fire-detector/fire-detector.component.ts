@@ -16,8 +16,7 @@ export class FireDetectorComponent {
   result: string = '';
   loading = false;
 
-  // ⚠️ Asegúrate de que tu backend pueda procesar videos
-  backendUrl = 'http://127.0.0.1:5000/detect-fire'; // Nuevo endpoint para videos
+  backendUrl = 'http://127.0.0.1:5000/detect-fire'; // Endpoint para videos
 
   constructor(private http: HttpClient) {}
 
@@ -38,7 +37,7 @@ export class FireDetectorComponent {
     const formData = new FormData();
     formData.append('file', this.selectedVideo);
 
-    console.log(this.selectedVideo); // Verifica que el archivo se ha seleccionado correctamente
+    console.log(this.selectedVideo); 
 
     this.http.post<{
       fire_detected: boolean;

@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FireDetectionService {
 
-  private apiUrl = 'http://127.0.0.1:5000/detect-fire'; // Ajusta el puerto si es necesario
+  private apiUrl = 'http://127.0.0.1:5000/detect-fire'; 
 
   constructor(private http: HttpClient) {}
 
