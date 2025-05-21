@@ -54,23 +54,25 @@
       </ion-title>
     </ion-toolbar>
   </ion-header>
+   <ion-card-title class="center text-white">Registros con camara</ion-card-title>
+    <ion-content color="dark">
+      <ion-grid>
+        <ion-row>
+          <ion-col
+            size="12"
+            size-md="4"
+            size-lg="3"
+            *ngFor="let det of imagenes"
+            class="imagen-col"
+          >
+            <ion-card class="imagen-card">
+              <img [src]="det" alt="Detección" />
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
 
-  <ion-content color="dark">
-    <ion-grid>
-      <ion-row>
-        <ion-col
-          size="6"
-          size-md="4"
-          size-lg="3"
-          *ngFor="let det of imagenes"
-          class="imagen-col"
-        >
-          <ion-card class="imagen-card">
-            <img [src]="det" alt="Detección" />
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  
 
-  </ion-content>
 </div>
