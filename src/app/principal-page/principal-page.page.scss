@@ -48,6 +48,21 @@
   gap: 10px;
 }
 
+.custom-grid {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+}
+.center{
+  text-align: center;
+}
+.header-row {
+  background-color: #1e1e1e;
+  color: white;
+  font-weight: bold;
+  padding: 8px 0;
+  border-bottom: 1px solid #444;
+}
+
 .no-signal-box {
   background-color: #444;
   color: white;

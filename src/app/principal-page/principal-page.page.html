@@ -9,7 +9,7 @@
 <ion-content color="dark">
   <ion-card color="dark">
     <ion-card-header>
-      <ion-card-title class="text-white">Main Cameras</ion-card-title>
+      <ion-card-title class="text-white center">Main Cameras</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       
@@ -32,17 +32,17 @@
   <div *ngIf="detecciones.length>0">
     <ion-card color="dark">
       <ion-card-header>
-        <ion-card-title class="text-white">Registers</ion-card-title>
+        <ion-card-title class="center text-white">Registers</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <ion-grid>
-          <ion-row class="header-row">
+        <ion-grid class="custom-grid">
+          <ion-row class = "header-row">
             <ion-col><strong>Id</strong></ion-col>
             <ion-col><strong>Register</strong></ion-col>
             <ion-col><strong>Date</strong></ion-col>
           </ion-row>
            <ng-container *ngFor="let det of detecciones">
-              <ion-row>
+              <ion-row >
                 <ion-col>{{ det.id }}</ion-col>
                 <ion-col>{{ det.tipo }}</ion-col>
                 <ion-col>{{ det.fecha }}</ion-col>
