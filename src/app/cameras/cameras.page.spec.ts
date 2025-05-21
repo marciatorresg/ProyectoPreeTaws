@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CamerasPage } from './cameras.page';
+import { DataService } from '../data.service';
 import { Component } from '@angular/core';
 import {
   IonButtons,

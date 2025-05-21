@@ -38,6 +38,10 @@ export const routes: Routes = [
 {
   path: 'fire',
   loadComponent: () => import('./fire-detector/fire-detector.component').then(m => m.FireDetectorComponent)
+},
+{
+  path:'photo',
+   loadComponent: () => import('./photos/photos.component').then(m => m.PhotosComponent)
 }
 
 ];

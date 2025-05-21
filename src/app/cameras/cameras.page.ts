@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -6,7 +6,7 @@ import { RouterModule, Router } from '@angular/router';
 
 import { addIcons } from 'ionicons';
 import { stopOutline } from 'ionicons/icons';
-
+import { DataService } from '../data.service';
 import { FireDetectionService } from '../services/fire-detection.service';
 
 addIcons({ 'stop-outline': stopOutline });
@@ -18,13 +18,20 @@ addIcons({ 'stop-outline': stopOutline });
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, RouterModule]
 })
-export class CamerasPage implements AfterViewInit{
+export class CamerasPage implements AfterViewInit,OnInit{
   @ViewChild('liveCamera', { static: false }) liveCamera!: ElementRef<HTMLVideoElement>;
   isDragging = false;
   offsetX = 0;
   offsetY = 0;
+  imagenes : string[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private dataService: DataService) {}
+
+  ngOnInit() {
+    this.dataService.detecciones$.subscribe(deteccion =>{
+      this.imagenes = deteccion;
+    })
+  }
 
   // Estructura jerárquica del menú
   menuData = [

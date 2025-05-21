@@ -14,6 +14,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { addIcons } from 'ionicons';
 import { stopOutline } from 'ionicons/icons';
 
+//servicio de comunacion de datos
+import { DataService } from '../data.service';
+
 addIcons({ 'stop-outline': stopOutline });
 
 interface Deteccion{
@@ -54,7 +57,7 @@ export class PrincipalPagePage implements OnInit, AfterViewInit, OnDestroy {
   public detecciones: DeteccionClass[]=[];
   public nextId = 1;
 
-  constructor(private http: HttpClient, private toastController: ToastController) {}
+  constructor(private http: HttpClient, private toastController: ToastController, private dataService: DataService) {}
 
   ngOnInit() {}
 
@@ -121,8 +124,7 @@ export class PrincipalPagePage implements OnInit, AfterViewInit, OnDestroy {
                   this.detecciones.push(deteccion)
                   console.log(this.detecciones);
                };
-               reader.readAsDataURL(blob);
-
+               reader.readAsDataURL(blob);  
               
               }
               
@@ -135,6 +137,8 @@ export class PrincipalPagePage implements OnInit, AfterViewInit, OnDestroy {
     }, 'image/jpeg');
   }
 
+
+
   async showToast(message: string) {
     const toast = await this.toastController.create({
       message,
@@ -143,5 +147,10 @@ export class PrincipalPagePage implements OnInit, AfterViewInit, OnDestroy {
       position: 'top'
     });
     toast.present();
+  }
+
+  sendDetecciones(){
+    const imagenes : string[] = this.detecciones.map(x => x.imagenBase64);
+    this.dataService.setDetecciones(imagenes);
   }
 }
