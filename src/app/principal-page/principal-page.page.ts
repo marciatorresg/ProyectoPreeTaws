@@ -16,6 +16,24 @@ import { stopOutline } from 'ionicons/icons';
 
 addIcons({ 'stop-outline': stopOutline });
 
+interface Deteccion{
+  id:number;
+  tipo: string;
+  fecha: string;
+}
+
+class DeteccionClass implements Deteccion {
+  id: number;
+  tipo: string;
+  fecha: string;
+
+  constructor(id: number, tipo: string, fecha: string) {
+    this.id = id;
+    this.tipo = tipo;
+    this.fecha = fecha;
+  }
+}
+
 @Component({
   selector: 'app-principal-page',
   templateUrl: './principal-page.page.html',
@@ -29,6 +47,9 @@ export class PrincipalPagePage implements OnInit, AfterViewInit, OnDestroy {
   intervalId: any;
 
   backendUrl = 'http://127.0.0.1:5000/detect-fire';
+
+  public detecciones: DeteccionClass[]=[];
+  public nextId = 1;
 
   constructor(private http: HttpClient, private toastController: ToastController) {}
 
@@ -83,7 +104,16 @@ export class PrincipalPagePage implements OnInit, AfterViewInit, OnDestroy {
             if (res.fire_detected || res.smoke_detected) {
               console.log('🔥 Detección:', res);
               this.showToast(`Alerta: ${res.fire_detected ? 'Fuego' : ''} ${res.smoke_detected ? 'Humo' : ''}`);
-            }
+
+              let tipo = [
+                res.fire_detected ? 'FUEGO' : '',
+                res.smoke_detected ? 'HUMO' : ''
+              ].filter(Boolean).join(' y ');
+              let deteccion : DeteccionClass = new DeteccionClass(this.nextId++,tipo,new Date().toLocaleString());
+              this.detecciones.push(deteccion)
+              console.log(this.detecciones);
+              }
+              
           },
           error: err => {
             console.error('Error al enviar el fotograma:', err);

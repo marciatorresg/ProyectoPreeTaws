@@ -29,30 +29,33 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card color="dark">
-    <ion-card-header>
-      <ion-card-title class="text-white">Registers</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col><strong>ID</strong></ion-col>
-          <ion-col><strong>Register</strong></ion-col>
-          <ion-col><strong>Date</strong></ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>12346</ion-col>
-          <ion-col>Smooth</ion-col>
-          <ion-col>12/03/2025</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>56746</ion-col>
-          <ion-col>Fire</ion-col>
-          <ion-col>10/01/2025</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="detecciones.length>0">
+    <ion-card color="dark">
+      <ion-card-header>
+        <ion-card-title class="text-white">Registers</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row class="header-row">
+            <ion-col><strong>Id</strong></ion-col>
+            <ion-col><strong>Register</strong></ion-col>
+            <ion-col><strong>Date</strong></ion-col>
+          </ion-row>
+           <ng-container *ngFor="let det of detecciones">
+              <ion-row>
+                <ion-col>{{ det.id }}</ion-col>
+                <ion-col>{{ det.tipo }}</ion-col>
+                <ion-col>{{ det.fecha }}</ion-col>
+              </ion-row>
+            </ng-container>
+
+        </ion-grid>
+      </ion-card-content>
+
+    </ion-card>
+
+
+  </div>
 </ion-content>
 
 <ion-footer>
