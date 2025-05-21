@@ -43,6 +43,7 @@
           </ion-row>
            <ng-container *ngFor="let det of detecciones">
               <ion-row >
+                <ion-col ><img [src]="det.imagenBase64" alt="Detección" width="100" /></ion-col>
                 <ion-col>{{ det.id }}</ion-col>
                 <ion-col>{{ det.tipo }}</ion-col>
                 <ion-col>{{ det.fecha }}</ion-col>

@@ -20,17 +20,20 @@ interface Deteccion{
   id:number;
   tipo: string;
   fecha: string;
+  imagenBase64: string;
 }
 
 class DeteccionClass implements Deteccion {
   id: number;
   tipo: string;
   fecha: string;
+  imagenBase64: string;
 
-  constructor(id: number, tipo: string, fecha: string) {
+  constructor(id: number, tipo: string, fecha: string,imagenBase64: string) {
     this.id = id;
     this.tipo = tipo;
     this.fecha = fecha;
+    this.imagenBase64 = imagenBase64;
   }
 }
 
@@ -105,13 +108,22 @@ export class PrincipalPagePage implements OnInit, AfterViewInit, OnDestroy {
               console.log('🔥 Detección:', res);
               this.showToast(`Alerta: ${res.fire_detected ? 'Fuego' : ''} ${res.smoke_detected ? 'Humo' : ''}`);
 
-              let tipo = [
-                res.fire_detected ? 'FUEGO' : '',
-                res.smoke_detected ? 'HUMO' : ''
-              ].filter(Boolean).join(' y ');
-              let deteccion : DeteccionClass = new DeteccionClass(this.nextId++,tipo,new Date().toLocaleString());
-              this.detecciones.push(deteccion)
-              console.log(this.detecciones);
+               const reader = new FileReader();
+               reader.onloadend = () => {
+                const base64data = reader.result as string;
+
+                  let tipo = [
+                  res.fire_detected ? 'FUEGO' : '',
+                  res.smoke_detected ? 'HUMO' : ''
+                  ].filter(Boolean).join(' y ');
+
+                  let deteccion : DeteccionClass = new DeteccionClass(this.nextId++,tipo,new Date().toLocaleString(),base64data);
+                  this.detecciones.push(deteccion)
+                  console.log(this.detecciones);
+               };
+               reader.readAsDataURL(blob);
+
+              
               }
               
           },
