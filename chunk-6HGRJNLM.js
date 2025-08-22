@@ -1,0 +1,1 @@
+import{Q as i,g as c}from"./chunk-FX33XUP3.js";var a=(()=>{let t=class t{constructor(){this.deteccionesRuta=new c([]),this.detecciones$=this.deteccionesRuta.asObservable()}setDetecciones(o){this.deteccionesRuta.next(o)}};t.\u0275fac=function(s){return new(s||t)},t.\u0275prov=i({token:t,factory:t.\u0275fac,providedIn:"root"});let e=t;return e})();export{a};
